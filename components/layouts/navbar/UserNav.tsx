@@ -1,25 +1,47 @@
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel, DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 import {MenuIcon} from "lucide-react";
 import Image from "next/image";
 import avatar from "@/public/avatar.jpg"
-import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import {RegisterLink, LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 
-export default function UserNav(){
-    return(
+export default async function UserNav() {
+    const {getUser} = getKindeServerSession()
+    const user = await getUser()
+    return (
         <DropdownMenu>
             <DropdownMenuTrigger>
                 <div className="rounded-full border px-2 py-2 lg:px-4 lg:py-2 flex items-center gap-x-3">
-                    <MenuIcon className="w-6 h-6 lg:w-5 lg:h-5" />
-                    <Image src={avatar} alt={"image of user"} className="rounded-full h-8 w-8 hidden lg:block" />
+                    <MenuIcon className="w-6 h-6 lg:w-5 lg:h-5"/>
+                    <Image width={32} height={32}  src={user?.picture ??  avatar} alt={"image of user"} className="rounded-full h-8 w-8 hidden lg:block"/>
                 </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-[200px]">
-                <DropdownMenuItem>
-                    <RegisterLink className="w-full">Register</RegisterLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                    <LoginLink className="w-full">Login</LoginLink>
-                </DropdownMenuItem>
+                {user ? (
+                    <>
+                        <DropdownMenuLabel>{user.given_name! + user.family_name!}</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>
+                            <LogoutLink className="w-full">Log out</LogoutLink>
+                        </DropdownMenuItem>
+                    </>
+                ) : (
+                    <>
+                        <DropdownMenuItem>
+                            <RegisterLink className="w-full">Register</RegisterLink>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <LoginLink className="w-full">Login</LoginLink>
+                        </DropdownMenuItem>
+                    </>
+                )}
+
             </DropdownMenuContent>
         </DropdownMenu>
     )
