@@ -10,6 +10,7 @@ import Image from "next/image";
 import avatar from "@/public/avatar.jpg"
 import {RegisterLink, LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import Link from "next/link";
 
 export default async function UserNav() {
     const {getUser} = getKindeServerSession()
@@ -27,6 +28,22 @@ export default async function UserNav() {
                     <>
                         <DropdownMenuLabel>{user.given_name! + user.family_name!}</DropdownMenuLabel>
                         <DropdownMenuSeparator />
+                        <form className="w-full">
+                            <button className="w-full text-start">
+                                Airbnb your Home
+                            </button>
+                        </form>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>
+                            <Link href="/" className="w-full">My List</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link href="/" className="w-full">My Favorites</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link href="/" className="w-full">My Reservation</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
                         <DropdownMenuItem>
                             <LogoutLink className="w-full">Log out</LogoutLink>
                         </DropdownMenuItem>
@@ -36,6 +53,7 @@ export default async function UserNav() {
                         <DropdownMenuItem>
                             <RegisterLink className="w-full">Register</RegisterLink>
                         </DropdownMenuItem>
+                        <DropdownMenuSeparator />
                         <DropdownMenuItem>
                             <LoginLink className="w-full">Login</LoginLink>
                         </DropdownMenuItem>

@@ -8,7 +8,7 @@ import UserNav from "@/components/layouts/navbar/UserNav";
 export default function Navbar() {
     return (
         <nav className="w-full border-b">
-            <div className="flex w-full items-center justify-between mx-0 px-5 lg:px-10 py-5">
+            <div className="flex w-full items-center justify-between mx-0 px-2 lg:px-5 py-5">
                 <Link href={'/'}>
                     <Image src={desktopLogo} alt={"picture"} className="w-32 hidden lg:block"/>
                     <Image src={mobileLogo} alt={"picture"} className="w-12 block lg:hidden"/>
