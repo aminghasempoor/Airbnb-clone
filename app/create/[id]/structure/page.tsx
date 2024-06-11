@@ -1,3 +1,7 @@
+import SelectedCategory from "@/components/SelectedCategory";
+import {createCategoryPage} from "@/lib/action";
+import {CreationBottomBar} from "@/components/CreationBottomBar";
+
 export default function StructureRoute({ params }: { params: { id: string } }) {
     return (
         <>
@@ -6,6 +10,12 @@ export default function StructureRoute({ params }: { params: { id: string } }) {
                     Which of these best describe your Home?
                 </h2>
             </div>
+            <form action={createCategoryPage}>
+                <input type="hidden" name="homeId" value={params.id} />
+                <SelectedCategory />
+
+                <CreationBottomBar />
+            </form>
         </>
     );
 }

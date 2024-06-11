@@ -20,7 +20,7 @@ export default function FilterBar(){
     );
 
     return(
-        <div className="flex items-center justify-evenly mt-5 w-full overflow-x-scroll no-scrollbar">
+        <div className="flex gap-x-10 items-center justify-evenly mt-5 w-full overflow-x-scroll no-scrollbar">
             {categoryItems.map((item) => (
                 <Link className={cn(
                     search === item.name
