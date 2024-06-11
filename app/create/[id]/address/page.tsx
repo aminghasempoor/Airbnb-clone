@@ -19,10 +19,10 @@ export default function AddressRoutw({ params }: { params: { id: string } }) {
     const { getAllCountries } = useCountries();
     const [locationValue, setLocationValue] = useState("");
 
-    // const LazyMap = dynamic(() => import("@/app/components/Map"), {
-    //     ssr: false,
-    //     loading: () => <Skeleton className="h-[50vh] w-full" />,
-    // });
+    const LazyMap = dynamic(() => import("@/components/Map"), {
+        ssr: false,
+        loading: () => <Skeleton className="h-[50vh] w-full" />,
+    });
     return (
         <>
             <div className="w-3/5 mx-auto">
@@ -53,9 +53,8 @@ export default function AddressRoutw({ params }: { params: { id: string } }) {
                         </Select>
                     </div>
 
-                    {/*<LazyMap locationValue={locationValue} />*/}
+                    <LazyMap locationValue={locationValue} />
                 </div>
-
                 <CreationBottomBar />
             </form>
         </>
