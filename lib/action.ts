@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import prisma from "@/lib/db";
 import {supabase} from "@/lib/supabase";
 
-export async function createAirbnbHome({ userId }: { userId: string }) {
+export async function  createAirbnbHome({ userId }: { userId: string }) {
     const data = await prisma.home.findFirst({
         where: {
             userId: userId,
@@ -79,11 +79,11 @@ export async function CreateDescription(formData: FormData) {
     const roomNumber = formData.get("room") as string;
     const bathroomsNumber = formData.get("bathroom") as string;
 
-    const { data: imageData } = await supabase.storage
+    const { data: imageData  } = await supabase.storage
         .from("images")
         .upload(`${imageFile.name}-${new Date()}`, imageFile, {
             cacheControl: "2592000",
-            contentType: "image/png",
+            contentType: "image/jpg",
         });
 
     const data = await prisma.home.update({

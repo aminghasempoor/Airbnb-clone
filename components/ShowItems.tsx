@@ -26,7 +26,7 @@ export default async function ShowItems({
                     title="Sorry no listings found for this category..."
                 />
             ) : (
-                <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
+                <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 pb-5">
                     {data.map((item) => (
                         <ListingCard
                             key={item.id}
