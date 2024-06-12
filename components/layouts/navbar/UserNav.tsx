@@ -39,7 +39,7 @@ export default async function UserNav() {
                         </form>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
-                            <Link href="/" className="w-full">My List</Link>
+                            <Link href="/MyHomes" className="w-full">My List</Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
                             <Link href="/favorite" className="w-full">My Favorites</Link>
