@@ -4,6 +4,7 @@ import Image from "next/image";
 import desktopLogo from "@/public/airbnb-desktop.png"
 import mobileLogo from "@/public/airbnb-mobile.webp"
 import UserNav from "@/components/layouts/navbar/UserNav";
+import {SearchModalComponent} from "@/components/SearchComponent";
 
 export default function Navbar() {
     return (
@@ -13,9 +14,7 @@ export default function Navbar() {
                     <Image src={desktopLogo} alt={"picture"} className="w-32 hidden lg:block"/>
                     <Image src={mobileLogo} alt={"picture"} className="w-12 block lg:hidden"/>
                 </Link>
-                <div className="rounded-full border px-5 py-2">
-                    <h1>Search...</h1>
-                </div>
+                <SearchModalComponent/>
                 <UserNav/>
             </div>
         </nav>
